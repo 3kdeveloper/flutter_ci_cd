@@ -21,3 +21,12 @@
 - [ ] ✅ Build configuration change
 - [ ] 📝 Documentation
 - [ ] 🗑️ Chore
+
+## Screenshots, Recordings
+
+*Please replace this line with instructions on how to test your changes, or any screenshots or recording you can attach here.*
+
+## Tested Feature??
+
+- [ ] 📱 In Real Device.
+- [ ] 🖥️ In Emulator
