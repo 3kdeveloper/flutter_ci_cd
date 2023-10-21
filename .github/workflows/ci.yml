@@ -22,6 +22,7 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+      - name: Get dependencies
       - run: flutter pub get
       # - run: dart run build_runner build
       - run: flutter analyze
@@ -39,10 +40,13 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
+      - name: Get dependencies
       - run: flutter pub get
+      - name: Build apk file
       - run: flutter build apk
+      - name: Build app bundle file
       - run: flutter build appbundle
-      # Upload the gen apk and bundle to the specified place
+      - name: Upload the gen apk file to the specified place
       - uses: actions/upload-artifact@v2
         with:
           name: release-apk
@@ -57,11 +61,8 @@ jobs:
         with:
           channel: "stable"
           architecture: x64
+      - name: Get dependencies
       - run: flutter pub get
       - run: flutter test
+      - name: Build ios ipa file
       - run: flutter build ios --release --no-codesign
-      # Upload the gen api to the specified place
-      - uses: actions/upload-artifact@v2
-        with:
-          name: release-apk
-          path: /Users/runner/work/flutter_ci_cd/flutter_ci_cd/build/ios/iphoneos/Runner.app
