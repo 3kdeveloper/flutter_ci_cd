@@ -1,9 +1,9 @@
 name: ci
 
 on:
-  push:
-    branches:
-      - main
+  # push:
+  #   branches:
+  #     - main
   pull_request:
     branches:
       - main
@@ -22,8 +22,8 @@ jobs:
       - uses: subosito/flutter-action@v2
         with:
           channel: "stable"
-      - run: flutter --version
       - run: flutter pub get
+      # - run: dart run build_runner build
       - run: flutter analyze
       - run: flutter test
 
@@ -42,7 +42,12 @@ jobs:
       - run: flutter pub get
       - run: flutter build apk
       - run: flutter build appbundle
-
+      # Upload the gen apk and bundle to the specified place
+      - uses: actions/upload-artifact@v2
+        with:
+          name: release-apk
+          path: build/app/outputs/flutter-apk/app-release.apk 
+        
   build_ios:
     name: Build Flutter (iOS)
     runs-on: macos-latest
@@ -55,3 +60,8 @@ jobs:
       - run: flutter pub get
       - run: flutter test
       - run: flutter build ios --release --no-codesign
+      # Upload the gen api to the specified place
+      - uses: actions/upload-artifact@v2
+        with:
+          name: release-apk
+          path: /Users/runner/work/flutter_ci_cd/flutter_ci_cd/build/ios/iphoneos/Runner.app
